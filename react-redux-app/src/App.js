@@ -1,8 +1,10 @@
 import React, {useEffect} from 'react';
 
 import './App.css';
+import {getTodos} from './state/actionCreators';
+import {connect} from 'react-redux';
 
-function App() {
+export function App({getTodos}) {
   useEffect(()=>{
     getTodos();
   }, [])
@@ -13,4 +15,4 @@ function App() {
   );
 }
 
-export default App;
+export default connect(state=>state, {getTodos})(App);
