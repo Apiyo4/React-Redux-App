@@ -18,10 +18,12 @@ export function App({data, getTodos}) {
   return (
     <div className="App">
       <h1>Rick and Morty</h1>
-      {data.map(char=>{
-        return  <Display  char = {char} key={char.id} />
-      })}
-      
+      <div className='flexDiv'>
+        {data.map(char=>{
+          return  <Display  char = {char} key={char.id} />
+        })}
+        
+      </div>
     </div>
   );
  
