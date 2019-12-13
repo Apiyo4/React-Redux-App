@@ -3,16 +3,33 @@ import React, {useEffect} from 'react';
 import './App.css';
 import {getTodos} from './state/actionCreators';
 import {connect} from 'react-redux';
+import Display from './components/Display';
 
-export function App({getTodos}) {
+export function App({data, getTodos}) {
+  console.log(data)
+  
   useEffect(()=>{
     getTodos();
   }, [])
+
+  if(!data || data.length===0){ 
+  return <h1>Loading</h1>
+}
   return (
     <div className="App">
-      Hello
+      <h1>Rick and Morty</h1>
+      {data.map(char=>{
+        return  <Display  char = {char} key={char.id} />
+      })}
+      
     </div>
   );
+ 
+}
+function mapStateToProps(state){
+  return{
+    data: state.reducer,
+  }
 }
 
-export default connect(state=>state, {getTodos})(App);
+export default connect(mapStateToProps, {getTodos})(App);
