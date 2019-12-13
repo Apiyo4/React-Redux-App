@@ -4,13 +4,18 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import {reducer} from './state/reducers';
-import {combineReducers, createStore} from 'redux';
-import {Provider} from 'react-redux'
+import {combineReducers, createStore, compose, applyMiddleware} from 'redux';
+import {Provider} from 'react-redux';
+import thunk from 'redux-thunk';
 
 const monsterReducer = combineReducers({
     reducer: reducer,
 })
-const store = createStore(monsterReducer);
+const store = createStore(monsterReducer, {},
+    compose(
+      applyMiddleware(thunk /* ,etc , other middlewares */),
+      window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+    ),);
 
 ReactDOM.render(
 <Provider store={store}>

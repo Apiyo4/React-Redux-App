@@ -1,8 +1,11 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useEffect} from 'react';
+
 import './App.css';
 
 function App() {
+  useEffect(()=>{
+    getTodos();
+  }, [])
   return (
     <div className="App">
       Hello
